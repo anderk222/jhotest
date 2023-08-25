@@ -1,0 +1,6 @@
+<div class="pl-4 flex w-full gap-8 flex-wrap">
+    <jhotest-card-check-list
+    *ngFor="let checklist of store.pagination.data" 
+    (remove)="('remove')"
+    />
+</div>

@@ -1,0 +1,19 @@
+<figure class="flex gap-2 flex-col w-44">
+    <div class=" h-28 flex items-center justify-center  text-6xl text-white text-center bg-[#FB00C4] shadow-lg">
+        {{ project.name.substring(0,2) }}
+    </div>
+    <div class="flex flex-col">
+        <p class="leading-none">{{project.name}}</p>
+        <p class="text-[10px] leading-none text-zinc-700">lasted update yesterday</p>
+    </div>
+    <div class="flex gap-2 h-7 text-sm">
+
+        <button 
+        [routerLink]="project.id.toString()"
+        class="bg-[#F1F1F1] w-14 shadow-element">abrir
+        </button>
+        <button (click)="remove.emit(project.id)" class="bg-[#FF5656] w-16  text-white shadow-element">
+            eliminar
+        </button>
+    </div>
+</figure>

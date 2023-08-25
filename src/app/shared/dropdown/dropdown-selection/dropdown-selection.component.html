@@ -1,0 +1,29 @@
+<div class="w-fit relative">
+    <button (click)="status=!status" class="focus:outline-none flex items-center gap-2">
+      {{text}} <span><svg xmlns="http://www.w3.org/2000/svg" width="11" height="16" fill="currentColor"
+                class="bi bi-chevron-down" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+            </svg></span>
+    </button>
+    <ul
+    [ngStyle]="{width : width}"
+    *ngIf="status" 
+    class="text-zinc-600 flex flex-col gap-1 top-[27px] absolute bg-white max-w-[400px] w-fit  shadow-element">
+        <li *ngFor="let item of options" 
+        (click)="event.emit(item.value)"
+        class="gap-2 flex cursor-pointer p-2 pr-8 hover:bg-[#F1F1F1]" >
+            <input [id]="item.value" 
+            class="cursor-pointer" type="checkbox"> 
+            <label class="cursor-pointer" [for]="item.value">{{item.text}}</label>
+        </li>
+    </ul>
+
+    <div 
+    *ngIf="!options.length && status"
+    [ngStyle]="{width : width}"
+    class="text-zinc-600 p-2 pr-8 top-[22px] absolute bg-white max-w-[400px] shadow-element" >
+      <span class="text-xs" >No items here</span>
+    </div>
+
+</div>

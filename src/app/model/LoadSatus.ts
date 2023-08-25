@@ -1,0 +1,1 @@
+export type LoadStatus = 'ok' | 'load' | 'err';

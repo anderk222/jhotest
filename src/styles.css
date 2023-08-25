@@ -1,1 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Krub:wght@200;400&display=swap');
+        
+body{
+    font-family: 'Krub', sans-serif;
+}
+
+.side_item {
+    display: inline-grid;
+    align-items: center;
+    grid-template-columns: 20% auto 20%;
+    width: 100%;
+}
+
+.shadow-element {
+
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.256);
+
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

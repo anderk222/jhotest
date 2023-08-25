@@ -1,0 +1,37 @@
+<div class="h-screen w-full flex justify-center pt-20 absolute left-0 top-0 z-[100] bg-[#5050508a]">
+
+    <form id="new_proyect" [formGroup]="project" (submit)="handlerSubmit()">
+
+        <div class="flex text-sm flex-col gap-2 justify-center w-[28rem] py-2 px-4 bg-white">
+            <h5 class="mb-2 font-medium">Nuevo Espacio de Trabajo</h5>
+
+            <label class="flex flex-col text-[#545353]" for="">Nombre
+                <input [formControl]="name"
+                    class="border-2 p-[3px] focus:outline-none focus:border-blue-600 border-[#C3C2C2]" type="text"
+                    placeholder="Nombre de proyecto" />
+            </label>
+
+            <label class="flex flex-col text-[#545353]" for="">Descripcion
+                <input [formControl]="detail"
+                    class="border-2 p-[3px] focus:outline-none focus:border-blue-600 border-[#C3C2C2]" type="text"
+                    placeholder="Breve descripcion de proyecto" />
+            </label>
+            <label class="flex flex-col text-[#545353]" for="">Imagen
+                <input [formControl]="img"
+                    class="border-2 bg-[#E9E9E9] p-[3px] focus:outline-none focus:border-blue-600 border-[#C3C2C2]"
+                    type="text" placeholder="Choose file" />
+            </label>
+
+            <div class="flex gap-2 justify-end">
+                <button 
+                [disabled]="project.invalid || status == 'load'" 
+                type="submit" class="bg-[#5E5CD4] w-[80px] h-[29px] text-white">
+                    {{ status =='load' ? 'Loading..' :'Aceptar'}}
+                </button>
+                <button type="reset" (click)="handlerCancel()" class="bg-[#FF5656] w-[80px] h-[29px] text-white">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

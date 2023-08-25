@@ -1,0 +1,40 @@
+<ul class="list-none flex flex-col p-2 w-52 gap-2 border-r border-r-[#776F6F]">
+
+    <li class="side_item w-full">
+        <div class="one"></div>
+
+        <p class="two text-sm">Anderson Macias</p>
+
+        <span class=" three bg-[#FF8D3A] text-white rounded-[50%] h-fit w-[33px] leading-[33px] shrink-0 text-center">
+            <p>AM</p>
+        </span>
+    </li>
+    <div class="border-b-[1.6px] border-b-black"></div>
+
+    <li class="w-full flex flex-col gap-2">
+        <div class="side_item text-sm">
+            <img src="assets/gem.svg" alt="">
+
+            <a class="two" routerLink="/proyect">Workspaces</a>
+
+            <span 
+            (click)="handleNew()"
+            class="text-xl cursor-pointer">+</span>
+        </div>
+
+        <ul *ngIf="status=='ok'" class="list-none flex gap-3 flex-col text-sm">
+
+            <li *ngFor="let project of projects">
+                <button 
+                [routerLink]="'proyect/'+project.id"
+                routerLinkActive="shadow-element bg-[#F2FDFE]"
+                class="flex pl-9 items-center py-2 w-full gap-2"> 
+                <span
+                        class="bg-[#FB00C4] text-base text-white px-1">{{project.name.substring(0,2)}}</span>
+                    <P>{{project.name}}</P>
+                </button>
+            </li>
+        </ul>
+    </li>
+
+</ul>

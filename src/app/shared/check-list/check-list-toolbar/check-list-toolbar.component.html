@@ -1,0 +1,14 @@
+<ul class="flex justify-between list-none">
+    <li>
+        <p>Listas de chequeo</p>
+    </li>
+
+    <li class="flex gap-16">
+        <jhotest-dropdown-selection text="Ordenar" />
+
+        <button class="text-xl w-[80px]" (click)="modal.toggle()">+</button>
+
+    </li>
+</ul>
+
+<jhotest-modal-check-list *ngIf="modal.open" (action)="modal.toggle()"/>
