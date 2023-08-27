@@ -1,1 +1,1 @@
-export type LoadStatus = 'ok' | 'load' | 'err';
+export type LoadStatus = 'OK' | 'LOAD' | 'ERROR' | 'NOTHING';

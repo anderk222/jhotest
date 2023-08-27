@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ItemGroup } from '../models/checkList';
+import { ItemGroup, CheckList, SaveChecklist } from '../models/checkList';
 import { CheckListService } from '../services/check-list.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoadStatus } from '@jhotest/model/LoadSatus';
@@ -32,12 +32,12 @@ export class CheckListComponent implements OnInit {
       nonNullable: true,
       validators: [Validators.required, Validators.minLength(3)]
     }),
-    created: this.fb.control(''),
-    edited: this.fb.control(''),
+    created: this.fb.control('', { nonNullable: true }),
+    edited: this.fb.control('', {}),
     items: this.fb.array<ItemGroup>([])
   });
 
-  status: LoadStatus = 'ok';
+  status: LoadStatus = 'OK';
 
   ngOnInit(): void {
     this.route.params.subscribe(params => this.findById(params['checklist']))
@@ -45,11 +45,24 @@ export class CheckListComponent implements OnInit {
   }
 
   handleSubmit() {
-    console.log(this.checklist.value)
+    
+    if (this.checklist.invalid) return;
+
+    this.update(this.checklist.value);
+  }
+
+  private update(data: Partial<SaveChecklist>) {
+
+    this.checklistService.update(data).subscribe({
+
+      next: () => this.snackbar.open('Cambios salvados'),
+      error: (err) => this.snackbar.open(JSON.stringify(err))
+    })
+
   }
 
   private findById(id: number | string) {
-    this.status = 'load';
+    this.status = 'LOAD';
     this.checklistService.findById(id).subscribe({
       next: (res) => {
         this.checklist.setValue({
@@ -57,25 +70,24 @@ export class CheckListComponent implements OnInit {
         });
 
         this.addItems(res.items);
-        this.status = 'ok';
+        this.status = 'OK';
       },
       error: (err) => {
 
         this.snackbar.open(JSON.stringify(err))
-        this.status = 'err'
+        this.status = 'ERROR'
       }
     });
 
   }
 
-
   private addItem(item: ChecklistItem) {
     this.items.getRawValue()
 
     this.items.push(this.fb.group({
-      id: this.fb.control(item.id),
-      question: this.fb.control(item.question),
-      answer: this.fb.control(item.answer),
+      id: this.fb.control(item.id, { nonNullable: true }),
+      question: this.fb.control(item.question, { nonNullable: true }),
+      answer: this.fb.control(item.answer, { nonNullable: true }),
       comment: this.fb.control(item.comment)
 
     }))

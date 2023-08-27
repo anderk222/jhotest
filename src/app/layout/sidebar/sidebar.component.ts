@@ -15,7 +15,7 @@ export class SidebarComponent implements OnInit {
     private auth: AuthService
   ) { }
 
-  status: LoadStatus = 'ok';
+  status: LoadStatus = 'OK';
 
   projects: any[] = [];
 
@@ -27,17 +27,17 @@ export class SidebarComponent implements OnInit {
 
   private findSome(user: number) {
 
-    this.status = 'load';
+    this.status = 'LOAD';
 
     this.projectService.findSomeSort(user, { limit: 10, page: 0 }).subscribe({
 
       next: (res) => {
         this.projects = res;
-        this.status = 'ok'
+        this.status = 'OK'
 
       },
       error: (err) => {
-        this.status = 'err';
+        this.status = 'ERROR';
         alert(JSON.stringify(err))
       }
     })

@@ -23,7 +23,7 @@ export class ProjectComponent implements OnInit {
   ) { };
 
   @Output() delete = new EventEmitter<number>();
-  status: LoadStatus = 'ok';
+  status: LoadStatus = 'OK';
 
   ngOnInit(): void {
 
@@ -38,22 +38,22 @@ export class ProjectComponent implements OnInit {
 
   findProject(id: number) {    
 
-    if(id <=0 ) return this.status='err';
+    if(id <=0 ) return this.status='ERROR';
 
     let project = this.store.find(id);
 
     if (!!project) return this.store.project = project;
 
-    this.status = 'load';
+    this.status = 'LOAD';
 
     this.service.findById(id).subscribe({
 
       next: (res) => {
-        this.status = 'ok'
+        this.status = 'OK'
         this.store.project = res;
       },
       error: (err) => {
-        this.status = 'err';
+        this.status = 'ERROR';
         this.snackbar.open(JSON.stringify(err))
       }
     });

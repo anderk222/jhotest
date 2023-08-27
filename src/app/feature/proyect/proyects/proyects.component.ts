@@ -29,7 +29,7 @@ export class ProyectsComponent implements OnInit {
 
   ) { }
 
-  status: LoadStatus = 'ok';
+  status: LoadStatus = 'OK';
 
   ngOnInit(): void {
 
@@ -48,17 +48,17 @@ export class ProyectsComponent implements OnInit {
 
   private search(opt: optsearch) {
 
-    this.status = 'load';
+    this.status = 'LOAD';
 
     this.projectService.search(this.auth.userId, opt).subscribe({
 
       next: (res) => {
         this.store.pagination = res;
-        this.status = 'ok';
+        this.status = 'OK';
       },
       error: (err) => {
         this.snackbar.open(JSON.stringify(err));
-        this.status = 'err';
+        this.status = 'OK';
       }
     });
   }

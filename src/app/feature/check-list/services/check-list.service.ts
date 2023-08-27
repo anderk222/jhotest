@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { env } from '@jhotest/enviroment/env';
 import { Pageable, Pagination } from '@jhotest/model/pagination';
-import { CheckList, CheckListProjection, SortScheckListSave } from '../models/checkList';
+import { CheckList, CheckListProjection, SaveChecklist, SortScheckListSave } from '../models/checkList';
 
 @Injectable({
   providedIn: 'root'
@@ -26,15 +26,23 @@ export class CheckListService {
 
   }
 
-  public saveSort(value : Partial<SortScheckListSave>){
+  public saveSort(value: Partial<SortScheckListSave>) {
 
-    return this.http.post<any>(this.url, value , { headers : this.headers })
+    return this.http.post<any>(this.url, value, { headers: this.headers })
 
   }
 
-  public findById(id : number | string){
+  public findById(id: number | string) {
 
-    return this.http.get<CheckList>(`${this.url}/${id}`, { headers : this.headers })
+    return this.http.get<CheckList>(`${this.url}/${id}`, { headers: this.headers })
+
+  }
+
+  public update(checklist: Partial<SaveChecklist>) {
+
+    return this.http.put(`${this.url}/${checklist.id}`, checklist, {
+      headers: this.headers
+    });
 
   }
 

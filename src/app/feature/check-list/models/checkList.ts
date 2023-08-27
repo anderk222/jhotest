@@ -12,10 +12,20 @@ export type CheckListProjection = {
 export type CheckList = {
     id: number
     name: string
-    status: StatusCheckList
+    status: StatusCheckList | string
     edited: string | null, 
     created : string,
-    items : ChecklistItem[]
+    items :  ChecklistItem[]
+}
+
+export type SaveChecklist = {
+    id: number
+    name: string
+    status: StatusCheckList | string
+    edited: string | null, 
+    created : string,
+    items :  Partial<ChecklistItem>[]
+
 }
 
 export type SortScheckListSave = {
@@ -35,8 +45,8 @@ export enum StatusCheckList {
 
 
 export type ItemGroup =  FormGroup<{
-    id: FormControl<number | null>,
-    question : FormControl<string | null>,
-    answer : FormControl<boolean | null>,
+    id: FormControl<number>,
+    question : FormControl<string>,
+    answer : FormControl<boolean>,
     comment : FormControl<string | null>
 }>;

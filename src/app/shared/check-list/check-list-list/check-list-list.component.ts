@@ -37,7 +37,7 @@ export class CheckListListComponent implements OnChanges {
 
 
   @Input() project = 0;
-  status: LoadStatus = 'ok';
+  status: LoadStatus = 'OK';
 
   ngOnChanges(): void {
 
@@ -53,17 +53,17 @@ export class CheckListListComponent implements OnChanges {
 
   projection(opt: Pageable) {
 
-    this.status = 'load';
+    this.status = 'LOAD';
 
     this.service.projection(this.project, opt).subscribe({
 
       next: (res) => {
         this.store.pagination = res;
-        this.status = 'ok';
+        this.status = 'OK';
       },
       error: (err) => {
         this.snackbar.open(JSON.stringify(err))
-        this.status = 'err'
+        this.status = 'ERROR'
 
       }
     });

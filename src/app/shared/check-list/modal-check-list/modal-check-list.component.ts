@@ -42,7 +42,7 @@ export class ModalCheckListComponent implements OnInit, OnChanges {
 
   });
 
-  status: LoadStatus = 'ok';
+  status: LoadStatus = 'OK';
 
   @Output() action = new EventEmitter<'cancel' | 'ok'>();
 
@@ -69,17 +69,17 @@ export class ModalCheckListComponent implements OnInit, OnChanges {
 
     if (!!project) return this.projectId = id;
 
-    this.status = 'load';
+    this.status = 'LOAD';
 
     this.projectService.findById(id).subscribe({
 
       next: (res) => {
         this.projectId = res.id;
-        this.status = 'ok';
+        this.status = 'OK';
       },
       error: (err) => {
         this.snackbar.open(JSON.stringify(err))
-        this.status = 'err'
+        this.status = 'ERROR'
       }
 
     });
@@ -94,17 +94,17 @@ export class ModalCheckListComponent implements OnInit, OnChanges {
 
   private save(checklist: Partial<SortScheckListSave>) {
 
-    this.status = 'load';
+    this.status = 'LOAD';
 
     this.service.saveSort(checklist).subscribe({
       next: (_) => {
-        this.status = 'ok'
+        this.status = 'OK'
         this.snackbar.open('lista de chequeo guardada');
         this.action.emit('ok');
 
       },
       error: (err) => {
-        this.status = 'err'
+        this.status = 'ERROR'
         this.snackbar.open(JSON.stringify(err))
       }
 

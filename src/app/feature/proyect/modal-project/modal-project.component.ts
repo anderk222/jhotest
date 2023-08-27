@@ -39,7 +39,7 @@ export class ModalProjectComponent implements OnInit {
 
   });
 
-  status: LoadStatus = 'ok';
+  status: LoadStatus = 'OK';
 
   ngOnInit(): void {
     this.routed.paramMap.subscribe((params) => {
@@ -51,17 +51,17 @@ export class ModalProjectComponent implements OnInit {
   private find(id: number) {
 
     if (!id) return;
-    this.status = 'load';
+    this.status = 'LOAD';
 
     this.projectService.findById(id).subscribe({
       next: (res) => {
         this.project.setValue({
           ...res, user : { id : this.auth.userId }
         })
-        this.status = 'ok'
+        this.status = 'OK'
       },
       error: (err) => {
-        this.status = 'err';
+        this.status = 'ERROR';
         this.snackbar.open(JSON.stringify(err))
       }
     });
@@ -75,7 +75,7 @@ export class ModalProjectComponent implements OnInit {
 
   handlerSubmit() {
 
-    this.status = 'load';
+    this.status = 'LOAD';
 
     let request: Observable<Project>;
 
@@ -86,12 +86,12 @@ export class ModalProjectComponent implements OnInit {
     request.subscribe(({
 
       next: (res) => {
-        this.status = 'ok',
+        this.status = 'OK',
         this.action.emit('ok');
         this.project.reset();
       },
       error: (err) => {
-        this.status = 'err';
+        this.status = 'ERROR';
         this.snackbar.open(JSON.stringify(err))
       }
     }));
