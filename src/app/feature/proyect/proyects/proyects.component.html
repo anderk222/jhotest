@@ -2,13 +2,14 @@
     <div class="flex flex-col w-full text-sm gap-4">
         <jhotest-proyect-toolbar path="Proyectos" (newmodal)="modal.toggle()" />
         <jhotest-dropdown-selection text="Ordenar" />
-        <div class="pl-4 flex w-full gap-8 flex-wrap">
+        <div *ngIf="status=='OK'" class="pl-4 flex w-full gap-8 flex-wrap">
             <jhotest-card-project 
             *ngFor="let project of store.pagination.data" 
             [project]="project " 
             (remove)="handlerRemove($event)"
             />
         </div>
+        <app-loading-table *ngIf="status !== 'OK'" [status]="status" ></app-loading-table>
     </div>
 </section>
 <jhotest-modal-project *ngIf="modal.open" (action)="modal.toggle()" />

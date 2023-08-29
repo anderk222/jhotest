@@ -4,6 +4,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angu
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { SortScheckListSave } from '@jhotest/feature/check-list/models/checkList';
+import { CheckListStoreService } from '@jhotest/feature/check-list/services/check-list-store.service';
 import { CheckListService } from '@jhotest/feature/check-list/services/check-list.service';
 import { ProjectStoreService } from '@jhotest/feature/proyect/services/project-store.service';
 import { ProjectService } from '@jhotest/feature/proyect/services/project.service';
@@ -22,6 +23,7 @@ export class ModalCheckListComponent implements OnInit, OnChanges {
     private route: ActivatedRoute,
     private projectService: ProjectService,
     @SkipSelf() private projectStore: ProjectStoreService,
+    private store : CheckListStoreService,
     private fb: FormBuilder,
     private snackbar: MatSnackBar,
     private service: CheckListService
@@ -64,9 +66,6 @@ export class ModalCheckListComponent implements OnInit, OnChanges {
     let project = this.projectStore.find(id);
     
 
-    console.log(this.projectStore.data);
-    
-
     if (!!project) return this.projectId = id;
 
     this.status = 'LOAD';
@@ -97,8 +96,11 @@ export class ModalCheckListComponent implements OnInit, OnChanges {
     this.status = 'LOAD';
 
     this.service.saveSort(checklist).subscribe({
-      next: (_) => {
+      next: (res) => {
         this.status = 'OK'
+        console.log(this.store.pagination);
+        
+        this.store.addItem(res);
         this.snackbar.open('lista de chequeo guardada');
         this.action.emit('ok');
 

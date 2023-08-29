@@ -15,6 +15,7 @@ import {
 import { DropdownSharedModule } from '@jhotest/shared/dropdown/dropdown-shared.module';
 import { CheckListToolbarComponent } from '@jhotest/shared/check-list/check-list-toolbar/check-list-toolbar.component';
 import { ProjectRoutingModule } from './project-routing.module';
+import { LoadingTableComponent } from '@jhotest/shared/load/loading-table/loading-table.component';
 
 
 
@@ -29,6 +30,7 @@ import { ProjectRoutingModule } from './project-routing.module';
     DropdownSharedModule,
     CheckListToolbarComponent,
     ProjectRoutingModule,
+    LoadingTableComponent
   ],
   exports: [],
   declarations: [

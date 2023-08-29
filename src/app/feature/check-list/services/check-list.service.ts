@@ -46,4 +46,11 @@ export class CheckListService {
 
   }
 
+
+  public delete(id : number){
+
+    return this.http.delete(`${this.url}/${id}`,{ headers: this.headers });
+
+  }
+
 }

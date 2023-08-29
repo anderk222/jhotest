@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Project } from '../model/project';
 import { AuthService } from '@jhotest/auth/auth.service';
+import { ProjectStoreService } from '../services/project-store.service';
 
 @Component({
   selector: 'jhotest-modal-project',
@@ -21,6 +22,7 @@ export class ModalProjectComponent implements OnInit {
     private fb: FormBuilder,
     private projectService: ProjectService,
     private snackbar: MatSnackBar,
+    private store : ProjectStoreService,
     private routed: ActivatedRoute,
     private auth : AuthService
   ) { }
@@ -89,6 +91,8 @@ export class ModalProjectComponent implements OnInit {
         this.status = 'OK',
         this.action.emit('ok');
         this.project.reset();
+        this.store.replaceOrAddItem(res);
+        
       },
       error: (err) => {
         this.status = 'ERROR';

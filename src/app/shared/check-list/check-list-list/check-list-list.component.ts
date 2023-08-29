@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, importProvidersFrom } from '@angular/core';
 import { CardCheckListComponent } from '../card-check-list/card-check-list.component';
 import { CheckListStoreService } from '@jhotest/feature/check-list/services/check-list-store.service';
 import { CheckListService } from '@jhotest/feature/check-list/services/check-list.service';
@@ -11,6 +11,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogSharedModule } from '@jhotest/shared/dialog/dialog-shared.module';
 import { DialogComponent } from '@jhotest/shared/dialog/dialog/dialog.component';
 import { CommonModule } from '@angular/common';
+import { CheckListModule } from '@jhotest/feature/check-list/check-list.module';
+import { AppModule } from '@jhotest/app.module';
+import JhotestResponse from '@jhotest/util/Response';
 
 @Component({
   selector: 'jhotest-check-list-list',
@@ -23,7 +26,9 @@ import { CommonModule } from '@angular/common';
     DialogSharedModule,
     CommonModule
   ],
-  standalone: true
+  standalone: true,
+  providers: [
+  ]
 })
 export class CheckListListComponent implements OnChanges {
 
@@ -59,18 +64,18 @@ export class CheckListListComponent implements OnChanges {
 
       next: (res) => {
         this.store.pagination = res;
-        this.status = 'OK';
+        this.status = res.totalItems > 0 ? 'OK' : 'NOTHING';
       },
       error: (err) => {
         this.snackbar.open(JSON.stringify(err))
-        this.status = 'ERROR'
+        this.status = 'ERROR';
 
       }
     });
 
   }
 
-  handlerDelete(id : number) {
+  handlerDelete(id: number) {
 
     let ref = this.dialog.open(DialogComponent, {
       data: {
@@ -82,15 +87,24 @@ export class CheckListListComponent implements OnChanges {
       }
     });
 
-    ref.afterClosed().subscribe(action=>{
+    ref.afterClosed().subscribe(action => {
 
-      if(!action) this.delete(id)
+      if (action) this.delete(id);
 
     });
 
   }
 
   private delete(id: number) {
+
+    this.service.delete(id).subscribe({
+      next: (res: any) => {
+        this.store.removeItem(res.id);
+        this.snackbar.open(`Check list was deleted`);
+        if (this.store.pagination.totalItems == 0) this.status = 'NOTHING';
+      },
+      error: (err) => this.snackbar.open(JhotestResponse.getMessageError(err))
+    })
 
   }
 

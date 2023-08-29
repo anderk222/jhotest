@@ -1,10 +1,13 @@
 import { LoadStatus } from '@jhotest/model/LoadSatus';
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-loading-table',
   templateUrl: './loading-table.component.html',
-  styleUrls: ['./loading-table.component.css']
+  styleUrls: ['./loading-table.component.css'],
+  imports : [CommonModule],
+  standalone :true
 })
 export class LoadingTableComponent implements OnChanges {
 

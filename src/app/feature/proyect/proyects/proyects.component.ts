@@ -25,7 +25,7 @@ export class ProyectsComponent implements OnInit {
     private snackbar: MatSnackBar,
     private routed: ActivatedRoute,
     private dialog: MatDialog,
-    public modal : ModalService
+    public modal: ModalService
 
   ) { }
 
@@ -42,9 +42,7 @@ export class ProyectsComponent implements OnInit {
       })
     });
 
-
   }
-
 
   private search(opt: optsearch) {
 
@@ -54,7 +52,9 @@ export class ProyectsComponent implements OnInit {
 
       next: (res) => {
         this.store.pagination = res;
-        this.status = 'OK';
+        console.log(res);
+        
+        this.status = res.totalItems > 0 ? 'OK' : 'NOTHING';
       },
       error: (err) => {
         this.snackbar.open(JSON.stringify(err));
@@ -89,7 +89,12 @@ export class ProyectsComponent implements OnInit {
 
     this.projectService.delete(id).subscribe({
 
-      next: (_) => this.store.removeItem(id),
+      next: (_) => {
+        this.store.removeItem(id)
+
+        if (this.store.pagination.totalItems == 0) this.status = 'NOTHING';
+        
+      },
       error: (err) => this.snackbar.open(JSON.stringify(err))
 
     });
