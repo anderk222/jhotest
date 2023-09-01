@@ -1,0 +1,20 @@
+<section class="transition-all">
+    <div (click)="toggle()" class="flex w-full items-center cursor-pointer justify-between pr-4">
+        <h3 class="font-semibold select-none">{{ open ? 'Casos de prueba' : 'Mostrar casos de pruebas' }}</h3>
+        <button class="focus:outline-none flex items-center gap-2 " [classList]="open && 'rotate-90'">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
+                class="bi bi-chevron-down" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+            </svg>
+        </button>
+    </div>
+    <div *ngIf="open" class="border-l border-zinc-500">
+        <jhotest-test-case-check-item />
+        <div class="flex flex-col items-center">
+            <button aria-valuetext="xd" type="button"
+                class="bg-green-400 p-1 px-4 text-white text-sm rounded-sm">+</button>
+            <p class="text-xs">Nuevo caso de uso</p>
+        </div>
+    </div>
+</section>

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Pagination } from '@jhotest/model/pagination';
 import { Project } from '../model/project';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,9 @@ export class ProjectStoreService {
     detail : '',
     img : '',
     name : ''
-  } 
+  };
+
+  addition = new BehaviorSubject<'save'>('save');
 
   public removeItem(id: number) {
 
@@ -38,6 +41,7 @@ export class ProjectStoreService {
     this.pagination.data.push(project);
 
     this.pagination.totalItems++;
+    this.addition.next('save');
 
   };
 

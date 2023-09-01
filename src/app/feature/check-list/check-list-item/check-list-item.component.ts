@@ -17,12 +17,12 @@ export class CheckListItemComponent {
 
   get id(): any { return this.item.get('id')};
   get question (): any {return this.item.get('question') };
-  get answer (): any { return this.item.get('answer') };
+  get passed (): any { return this.item.get('passed') };
   get comment (): any { return this.item.get('comment') };
 
   set id(value: any) {  this.item.patchValue({id : value})};
   set question (value: any) { this.item.patchValue({question : value}) };
-  set answer (value: any) {  this.item.patchValue({answer : value}) };
+  set passed (value: any) {  this.item.patchValue({passed : value}) };
   set comment (value: any) {  this.item.patchValue({comment : value}) };
 
 }

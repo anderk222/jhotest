@@ -3,7 +3,6 @@ export type ChecklistItem ={
 
         id: number,
         question : string,
-        answer: boolean ,
+        passed: boolean ,
         comment: string | null
-
 }

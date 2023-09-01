@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { ItemGroup, CheckList, SaveChecklist } from '../models/checkList';
 import { CheckListService } from '../services/check-list.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './check-list.component.html',
   styleUrls: ['./check-list.component.css']
 })
+
 export class CheckListComponent implements OnInit {
 
 
@@ -87,7 +88,7 @@ export class CheckListComponent implements OnInit {
     this.items.push(this.fb.group({
       id: this.fb.control(item.id, { nonNullable: true }),
       question: this.fb.control(item.question, { nonNullable: true }),
-      answer: this.fb.control(item.answer, { nonNullable: true }),
+      passed: this.fb.control(item.passed, { nonNullable: true }),
       comment: this.fb.control(item.comment)
 
     }))
@@ -96,7 +97,7 @@ export class CheckListComponent implements OnInit {
   public addEmptyItem() {
     this.addItem({
       id: 0,
-      answer: false,
+      passed: false,
       comment: '',
       question: 'New test'
     })

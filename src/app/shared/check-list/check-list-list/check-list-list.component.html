@@ -1,7 +1,11 @@
 <div class="pl-4 flex w-full gap-8 flex-wrap">
+    <div class="w-full" ></div>
+    <ng-template #checklists >
     <jhotest-card-check-list
     *ngFor="let checklist of store.pagination.data" 
     [checklist]="checklist"
     (delete)="handlerDelete($event)"
     />
+</ng-template>
+<app-loading-table *ngIf="status!='OK'; else checklists" [status]="status" />
 </div>

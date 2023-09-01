@@ -1,4 +1,4 @@
-import { AbstractControl, FormControl, FormGroup } from "@angular/forms"
+import { FormControl, FormGroup } from "@angular/forms"
 import { ChecklistItem } from './ChecklistItem';
 
 export type CheckListProjection = {
@@ -47,6 +47,6 @@ export enum StatusCheckList {
 export type ItemGroup =  FormGroup<{
     id: FormControl<number>,
     question : FormControl<string>,
-    answer : FormControl<boolean>,
+    passed : FormControl<boolean>,
     comment : FormControl<string | null>
 }>;

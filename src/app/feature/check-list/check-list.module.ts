@@ -7,31 +7,35 @@ import { CheckListComponent } from './check-list/check-list.component';
 import { CheckListItemComponent } from './check-list-item/check-list-item.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TestCasesCheckItemComponent } from '@jhotest/shared/test-case/test-cases-check-item/test-cases-check-item.component';
+import { InputSharedModule } from '@jhotest/shared/input/input-shared.module';
 
-const routes : Route[] = [
+const routes: Route[] = [
 
   {
-    path : ':checklist',
-    component : CheckListComponent
+    path: ':checklist',
+    component: CheckListComponent
   }
 
 ];
 
 @NgModule({
-    imports: [
-      RouterModule.forChild(routes),
-      CardCheckListComponent,
-      CommonModule,
-      FormsModule,
-    ReactiveFormsModule
-    ],
-    exports: [],
-    declarations: [
+  imports: [
+    RouterModule.forChild(routes),
+    CardCheckListComponent,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    TestCasesCheckItemComponent,
+    InputSharedModule
+  ],
+  exports: [],
+  declarations: [
     CheckListsComponent,
     ToolbarCheckListComponent,
     CheckListComponent,
     CheckListItemComponent
   ],
-    providers: [],
+  providers: [],
 })
 export class CheckListModule { }

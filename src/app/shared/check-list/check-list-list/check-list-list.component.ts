@@ -11,9 +11,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogSharedModule } from '@jhotest/shared/dialog/dialog-shared.module';
 import { DialogComponent } from '@jhotest/shared/dialog/dialog/dialog.component';
 import { CommonModule } from '@angular/common';
-import { CheckListModule } from '@jhotest/feature/check-list/check-list.module';
-import { AppModule } from '@jhotest/app.module';
 import JhotestResponse from '@jhotest/util/Response';
+import { LoadingTableComponent } from '@jhotest/shared/load/loading-table/loading-table.component';
 
 @Component({
   selector: 'jhotest-check-list-list',
@@ -24,7 +23,8 @@ import JhotestResponse from '@jhotest/util/Response';
     MatSnackBarModule,
     DialogModule,
     DialogSharedModule,
-    CommonModule
+    CommonModule,
+    LoadingTableComponent
   ],
   standalone: true,
   providers: [
@@ -54,6 +54,9 @@ export class CheckListListComponent implements OnChanges {
       })
 
     });
+
+    // suscribe when another component add a project 
+    this.store.addition.subscribe(() => this.handleAddToStore());
   };
 
   projection(opt: Pageable) {
@@ -106,6 +109,11 @@ export class CheckListListComponent implements OnChanges {
       error: (err) => this.snackbar.open(JhotestResponse.getMessageError(err))
     })
 
+  };
+
+
+  private handleAddToStore(){
+    if(this.status == 'NOTHING') this.status='OK';
   }
 
 }

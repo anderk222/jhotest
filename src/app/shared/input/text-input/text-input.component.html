@@ -1,0 +1,10 @@
+<label *ngIf="!edit else ipt" (dblclick)="edit=!edit" for="">
+    {{control.value}}
+</label>
+<ng-template #ipt class="w-full">
+    <input 
+    [formControl]="control" 
+    class="focus:outline-none w-full" 
+    value="Cuando insertamos mas de 10 caracteres nos debe
+aparecer una" type="text">
+</ng-template>

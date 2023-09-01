@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Pagination } from '@jhotest/model/pagination';
 import { CheckListProjection } from '../models/checkList';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,8 @@ export class CheckListStoreService {
     totalPages: 0
 
   };
+
+  addition = new BehaviorSubject<'save'>('save');
 
   public removeItem(id: number) {
 
@@ -31,6 +34,7 @@ export class CheckListStoreService {
     this.pagination.data.push(checklist);
 
     this.pagination.totalItems++;
+    this.addition.next('save');
 
   };
 

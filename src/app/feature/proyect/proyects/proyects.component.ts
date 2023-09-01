@@ -42,6 +42,9 @@ export class ProyectsComponent implements OnInit {
       })
     });
 
+    // suscribe when another component add a project 
+    this.store.addition.subscribe(()=>this.handleAddToStore());
+
   }
 
   private search(opt: optsearch) {
@@ -98,6 +101,10 @@ export class ProyectsComponent implements OnInit {
       error: (err) => this.snackbar.open(JSON.stringify(err))
 
     });
+  }
+
+  private handleAddToStore(){
+    if(this.status == 'NOTHING') this.status='OK';
   }
 
 }
