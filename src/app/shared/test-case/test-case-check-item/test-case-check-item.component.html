@@ -1,64 +1,21 @@
 <form [formGroup]="testCase" class="w-full flex flex-col gap-2 p-2">
 
-    <p class="font-semibold">1.- Caso de uso uno</p>
+    <div>{{idx+1+'.-'}} <span><jhotest-text-input [control]="name" class="font-semibold" /></span>
+    </div>
     <h5>Valores</h5>
 
-    <table class="">
-        <thead class="border-x bg-[#FF6767]">
-            <tr class="bg-[#FF6767] border border-[#FF6767]">
-                <th class="w-[45%] p-1 text-start">
-                    Parametros
-                </th>
-                <th class="w-[45%] p-1 text-start">
-                    Valores
-                </th>
-                <th class="w-[9%] ">
-                    <button class="font-extrabold text-white  w-fit" type="reset">
-                        + </button>
-                </th>
-            </tr>
-        </thead>
-        <tbody class="border border-black p-2">
-
-            <tr class="border-b border-black">
-                <td class=" border-black font-semibold cursor-text p-1 w-[45%]">
-                    Nombre
-
-                </td>
-                <td class="border-l cursor-text p-1 w-[45%]  border-black">
-                    Anderson Macias
-                </td>
-                <th class="cursor-text w-[9%]  k">
-                    <button class="font-extrabold text-lg ml-auto w-fit" type="reset">
-                        -</button>
-                </th>
-            </tr>
-            <tr class="border-b border-black">
-                <td class=" border-black font-semibold cursor-text p-1 w-[45%]">
-                    Email
-
-                </td>
-                <td class="border-l cursor-text p-1 w-[45%]  border-black">
-                    anderk222@gmail.com
-                </td>
-                <th class="cursor-text w-[9%]  k">
-                    <button class="font-extrabold text-lg ml-auto w-fit" type="reset">
-                        -</button>
-                </th>
-            </tr>
-        </tbody>
-
-    </table>
-
-
+    <jhotest-query-params-table 
+    [query]="parameters.value"
+    (jhochange)="parameters=$event"
+    />
     <p>Cumple el caso de uso?</p>
 
     <div class="flex gap-4 pl-3">
         <label>si
-            <input type="radio" [value]="true" />
+            <input [formControl]="passed" type="radio" [name]="'case'+idx" [value]="true" />
         </label>
         <label>no
-            <input type="radio" [value]="false" />
+            <input [formControl]="passed" type="radio" [name]="'case'+idx" [value]="false" />
         </label>
     </div>
 

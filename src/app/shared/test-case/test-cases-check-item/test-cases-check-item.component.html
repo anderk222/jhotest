@@ -1,6 +1,8 @@
 <section class="transition-all">
     <div (click)="toggle()" class="flex w-full items-center cursor-pointer justify-between pr-4">
-        <h3 class="font-semibold select-none">{{ open ? 'Casos de prueba' : 'Mostrar casos de pruebas' }}</h3>
+        <h3 class="font-semibold  select-none text-blue-500">
+            {{ open ? 'Casos de prueba' : 'Mostrar casos de pruebas' }}
+        </h3>
         <button class="focus:outline-none flex items-center gap-2 " [classList]="open && 'rotate-90'">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
                 class="bi bi-chevron-down" viewBox="0 0 16 16">
@@ -10,9 +12,10 @@
         </button>
     </div>
     <div *ngIf="open" class="border-l border-zinc-500">
-        <jhotest-test-case-check-item />
+        <jhotest-test-case-check-item *ngFor="let case of testCases.controls; let idx = index" [testCase]="case"
+            [idx]="idx" />
         <div class="flex flex-col items-center">
-            <button aria-valuetext="xd" type="button"
+            <button (click)="handleAddCase()" type="button"
                 class="bg-green-400 p-1 px-4 text-white text-sm rounded-sm">+</button>
             <p class="text-xs">Nuevo caso de uso</p>
         </div>

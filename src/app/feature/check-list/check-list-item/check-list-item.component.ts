@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ItemGroup } from '../models/checkList';
+import { FormArray } from '@angular/forms';
+import { TestCaseGroup } from '@jhotest/feature/test-case/models';
 
 @Component({
   selector: 'jhotest-check-list-item',
@@ -19,6 +21,7 @@ export class CheckListItemComponent {
   get question (): any {return this.item.get('question') };
   get passed (): any { return this.item.get('passed') };
   get comment (): any { return this.item.get('comment') };
+  get testCases() : FormArray<TestCaseGroup> { return this.item.get('testCases') as any };
 
   set id(value: any) {  this.item.patchValue({id : value})};
   set question (value: any) { this.item.patchValue({question : value}) };

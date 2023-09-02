@@ -1,5 +1,6 @@
-import { FormControl, FormGroup } from "@angular/forms"
+import { FormArray, FormControl, FormGroup } from "@angular/forms"
 import { ChecklistItem } from './ChecklistItem';
+import { TestCaseGroup } from "@jhotest/feature/test-case/models";
 
 export type CheckListProjection = {
 
@@ -24,7 +25,7 @@ export type SaveChecklist = {
     status: StatusCheckList | string
     edited: string | null, 
     created : string,
-    items :  Partial<ChecklistItem>[]
+    items :  Partial<SaveChecklist>[]
 
 }
 
@@ -48,5 +49,6 @@ export type ItemGroup =  FormGroup<{
     id: FormControl<number>,
     question : FormControl<string>,
     passed : FormControl<boolean>,
-    comment : FormControl<string | null>
+    comment : FormControl<string | null>,
+    testCases : FormArray<TestCaseGroup>
 }>;

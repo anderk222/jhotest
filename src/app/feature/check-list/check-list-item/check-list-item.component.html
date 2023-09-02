@@ -1,6 +1,6 @@
 <form action="">
     <div class="flex flex-col gap-2">
-      <jhotest-text-input [control]="question" />
+     <div>{{idx+1+'.-'}} <span><jhotest-text-input [control]="question" /></span></div>
 
         <div class="flex gap-4 pl-3">
             <label>si
@@ -21,7 +21,7 @@
                 </svg></button>
         </div>
 
-        <jhotest-test-cases-check-item></jhotest-test-cases-check-item>
+        <jhotest-test-cases-check-item [testCases]="testCases" />
        
         <button (click)="showComment = !showComment" class="focus:outline-none w-fit text-[#6890F8]">
             {{ showComment ? 'Ocultar comentario' : 'Mostrar comentario' }}

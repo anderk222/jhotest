@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
-import { ItemGroup, CheckList, SaveChecklist } from '../models/checkList';
+import { ItemGroup, SaveChecklist } from '../models/checkList';
 import { CheckListService } from '../services/check-list.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoadStatus } from '@jhotest/model/LoadSatus';
 import { ChecklistItem } from '../models/ChecklistItem';
 import { ActivatedRoute } from '@angular/router';
+import { TestCase, TestCaseGroup } from '@jhotest/feature/test-case/models';
 
 @Component({
   selector: 'jhotest-check-list',
@@ -41,12 +42,13 @@ export class CheckListComponent implements OnInit {
   status: LoadStatus = 'OK';
 
   ngOnInit(): void {
+    
     this.route.params.subscribe(params => this.findById(params['checklist']))
 
   }
 
   handleSubmit() {
-    
+
     if (this.checklist.invalid) return;
 
     this.update(this.checklist.value);
@@ -83,13 +85,15 @@ export class CheckListComponent implements OnInit {
   }
 
   private addItem(item: ChecklistItem) {
-    this.items.getRawValue()
+
+    let caseformarray = this.generateCaseArrayForm(item.testCases);
 
     this.items.push(this.fb.group({
       id: this.fb.control(item.id, { nonNullable: true }),
       question: this.fb.control(item.question, { nonNullable: true }),
       passed: this.fb.control(item.passed, { nonNullable: true }),
-      comment: this.fb.control(item.comment)
+      comment: this.fb.control(item.comment),
+      testCases: caseformarray
 
     }))
   }
@@ -99,15 +103,33 @@ export class CheckListComponent implements OnInit {
       id: 0,
       passed: false,
       comment: '',
-      question: 'New test'
+      question: 'New test',
+      testCases: []
     })
   }
 
-  private addItems(items: ChecklistItem[]) { for (let item of items) this.addItem(item) }
+  private generateCaseArrayForm(cases : TestCase[]){
 
+    let formarray = this.fb.array<TestCaseGroup>([]);
+
+    for(let testcase of cases) formarray.push(this.fb.group({
+
+      id : this.fb.control(testcase.id, { nonNullable : true }),
+      name : this.fb.control(testcase.name, { nonNullable : true }),
+      detail : this.fb.control(testcase.detail, { nonNullable : true}),
+      parameters : this.fb.control(testcase.parameters),
+      passed : this.fb.control(testcase.passed, { nonNullable : true })
+
+    }));
+
+    return formarray;
+
+  }
+
+  private addItems(items: ChecklistItem[]) { for (let item of items)this.addItem(item) }
+ 
   get items() { return this.checklist.get('items') as FormArray<ItemGroup> };
   get name(): any { return this.checklist.get('name') };
 
   set name(value: any) { this.checklist.patchValue({ name: value }) };
-
 }

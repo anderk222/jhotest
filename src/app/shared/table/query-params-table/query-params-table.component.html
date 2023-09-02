@@ -1,0 +1,46 @@
+<table class="w-full">
+    <thead class="border-x bg-[#FF6767]">
+        <tr class="bg-[#FF6767] border border-[#FF6767]">
+            <th colspan="2" class="w-[45%] p-1 ">
+                Parametros y valores
+            </th>
+
+            <th class="w-[9%] ">
+                <button 
+                (click)="addNewParameter()"
+                class="font-extrabold text-white  w-fit" type="button">
+                + </button>
+            </th>
+        </tr>
+    </thead>
+    <tbody class="border border-black p-2">
+
+        <tr class="border-b border-black" *ngFor="let entry of entries;" >
+            <td class=" border-black font-semibold cursor-text  w-[45%]">
+                <input 
+                #key
+                class="w-full h-full p-1 focus:outline-none focus:border-b border-blue-500 hover:bg-slate-50"
+                [value]="entry[0]"
+                (change)="handleChangeKey(entry[0], key.value)"
+                />
+
+            </td>
+            <td class="border-l cursor-text  w-[45%]  border-black">
+                <input 
+                #value
+                class="w-full h-full p-1 focus:outline-none focus:border-b border-blue-500 hover:bg-slate-50"
+                [value]="entry[1]"
+                (change)="handleChangeValue(entry[0], value.value)"
+                />
+            </td>
+            <th class="cursor-text w-[9%]  k">
+                <button 
+                (click)="remove(entry[0])"
+                class="font-extrabold text-lg ml-auto w-fit" type="button">
+                    -</button>
+            </th>
+        </tr>
+
+    </tbody>
+
+</table>

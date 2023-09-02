@@ -9,7 +9,8 @@ import { FormControl } from '@angular/forms';
 export class TextInputComponent {
 
   @Input() control : FormControl<any> = { } as any;
-  
+  @Input() class = '';
+
   edit = false;
 
 }

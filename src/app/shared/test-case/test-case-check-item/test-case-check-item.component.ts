@@ -1,18 +1,28 @@
 import { Component, Input } from '@angular/core';
-import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TestCaseGroup } from '@jhotest/feature/test-case/models';
+import { InputSharedModule } from '@jhotest/shared/input/input-shared.module';
+import { TableSharedModule } from '@jhotest/shared/table/table-shared.module';
 
 @Component({
   selector: 'jhotest-test-case-check-item',
   templateUrl: './test-case-check-item.component.html',
   styleUrls: ['./test-case-check-item.component.css'],
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule]
+  imports: [
+    FormsModule, 
+    ReactiveFormsModule, 
+    InputSharedModule,
+  TableSharedModule
+  ]
 })
 export class TestCaseCheckItemComponent {
 
-  @Input() testCase: FormGroup<TestCaseGroup> = {} as any;
+  @Input() testCase: TestCaseGroup = {} as any;
+  @Input() idx = 0;
 
+  log(val : string){console.log(val);}
+  
 
   get id(): any { return this.testCase.get('id') };
   get name(): any { return this.testCase.get('name') };
