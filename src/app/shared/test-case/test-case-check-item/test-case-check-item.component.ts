@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TestCaseGroup } from '@jhotest/feature/test-case/models';
@@ -13,7 +14,8 @@ import { TableSharedModule } from '@jhotest/shared/table/table-shared.module';
     FormsModule, 
     ReactiveFormsModule, 
     InputSharedModule,
-  TableSharedModule
+  TableSharedModule,
+  CommonModule
   ]
 })
 export class TestCaseCheckItemComponent {
@@ -21,7 +23,7 @@ export class TestCaseCheckItemComponent {
   @Input() testCase: TestCaseGroup = {} as any;
   @Input() idx = 0;
 
-  log(val : string){console.log(val);}
+  open = false
   
 
   get id(): any { return this.testCase.get('id') };

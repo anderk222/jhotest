@@ -1,6 +1,6 @@
 <form action="">
     <div class="flex flex-col gap-2">
-     <div>{{idx+1+'.-'}} <span><jhotest-text-input [control]="question" /></span></div>
+     <div>{{idx+1+'.-'}} <span><jhotest-text-input [control]="question" class="font-semibold" /></span></div>
 
         <div class="flex gap-4 pl-3">
             <label>si
@@ -10,7 +10,7 @@
                 <input [formControl]="passed" type="radio" [name]="'item'+idx" [value]="false" />
             </label>
             <button 
-            class="bg-[#FF5656] ml-auto text-white py-2 px-2 rounded-[50%] w-fit" 
+            class="bg-[#FF5656] shadow-element ml-auto text-white py-2 px-2 rounded-[50%] w-fit" 
             (click)="delete.emit(idx)"
             type="reset"
             >

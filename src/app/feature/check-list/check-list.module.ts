@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TestCasesCheckItemComponent } from '@jhotest/shared/test-case/test-cases-check-item/test-cases-check-item.component';
 import { InputSharedModule } from '@jhotest/shared/input/input-shared.module';
+import { CheckListIndexComponent } from './check-list-index/check-list-index.component';
 
 const routes: Route[] = [
 
@@ -34,7 +35,8 @@ const routes: Route[] = [
     CheckListsComponent,
     ToolbarCheckListComponent,
     CheckListComponent,
-    CheckListItemComponent
+    CheckListItemComponent,
+    CheckListIndexComponent
   ],
   providers: [],
 })

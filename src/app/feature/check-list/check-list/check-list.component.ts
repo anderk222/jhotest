@@ -40,6 +40,7 @@ export class CheckListComponent implements OnInit {
   });
 
   status: LoadStatus = 'OK';
+  index :string[] = []
 
   ngOnInit(): void {
     
@@ -71,6 +72,7 @@ export class CheckListComponent implements OnInit {
         this.checklist.setValue({
           ...res, items: []
         });
+        this.index = this.generateIndex(res.items);
 
         this.addItems(res.items);
         this.status = 'OK';
@@ -125,6 +127,9 @@ export class CheckListComponent implements OnInit {
     return formarray;
 
   }
+
+  private generateIndex = (items : ChecklistItem[])=> items.map((v,i)=>`${i+1}.- ${v.question}`)
+
 
   private addItems(items: ChecklistItem[]) { for (let item of items)this.addItem(item) }
  

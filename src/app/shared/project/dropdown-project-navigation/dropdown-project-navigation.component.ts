@@ -24,7 +24,6 @@ export class DropdownProjectNavigationComponent implements OnInit {
   options: DropdownNavOpt[] = [];
 
   ngOnInit(): void {
-    this.snackbar.open('dsd')
 
     this.find(this.auth.userId);
 
