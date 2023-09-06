@@ -1,14 +1,17 @@
 <ul class="flex w-full justify-between items-center list-none">
-    <li>
-        <h3>
+    <li class="w-full">
+        <h3 class="w-full flex ">
             <span>Checklist/</span>
             <input 
+            
             #nameipt 
             (focus)="nameipt.select()"
-             class="w-fit focus:outline-none"
+             class="w-full focus:outline-none"
                [value]="name"
             (change)="title.emit(nameipt.value)"
                />
+
+               <jhotest-text-input />
         </h3>
     </li>
     <li>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { ItemGroup, SaveChecklist } from '../models/checkList';
 import { CheckListService } from '../services/check-list.service';
@@ -40,11 +40,20 @@ export class CheckListComponent implements OnInit {
   });
 
   status: LoadStatus = 'OK';
-  index :string[] = []
+  index: string[] = []
 
   ngOnInit(): void {
-    
+
     this.route.params.subscribe(params => this.findById(params['checklist']))
+
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  handleSaveShortCut(e: KeyboardEvent) {
+    if (e.ctrlKey && e.key == 's') {
+      e.preventDefault();
+      this.handleSubmit()
+    }
 
   }
 
@@ -110,17 +119,17 @@ export class CheckListComponent implements OnInit {
     })
   }
 
-  private generateCaseArrayForm(cases : TestCase[]){
+  private generateCaseArrayForm(cases: TestCase[]) {
 
     let formarray = this.fb.array<TestCaseGroup>([]);
 
-    for(let testcase of cases) formarray.push(this.fb.group({
+    for (let testcase of cases) formarray.push(this.fb.group({
 
-      id : this.fb.control(testcase.id, { nonNullable : true }),
-      name : this.fb.control(testcase.name, { nonNullable : true }),
-      detail : this.fb.control(testcase.detail, { nonNullable : true}),
-      parameters : this.fb.control(testcase.parameters),
-      passed : this.fb.control(testcase.passed, { nonNullable : true })
+      id: this.fb.control(testcase.id, { nonNullable: true }),
+      name: this.fb.control(testcase.name, { nonNullable: true }),
+      detail: this.fb.control(testcase.detail, { nonNullable: true }),
+      parameters: this.fb.control(testcase.parameters),
+      passed: this.fb.control(testcase.passed, { nonNullable: true })
 
     }));
 
@@ -128,11 +137,11 @@ export class CheckListComponent implements OnInit {
 
   }
 
-  private generateIndex = (items : ChecklistItem[])=> items.map((v,i)=>`${i+1}.- ${v.question}`)
+  private generateIndex = (items: ChecklistItem[]) => items.map((v, i) => `${i + 1}.- ${v.question}`)
 
 
-  private addItems(items: ChecklistItem[]) { for (let item of items)this.addItem(item) }
- 
+  private addItems(items: ChecklistItem[]) { for (let item of items) this.addItem(item) }
+
   get items() { return this.checklist.get('items') as FormArray<ItemGroup> };
   get name(): any { return this.checklist.get('name') };
 

@@ -1,18 +1,18 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'jhotest-query-params-table',
   templateUrl: './query-params-table.component.html',
   styleUrls: ['./query-params-table.component.css']
 })
-export class QueryParamsTableComponent implements OnInit {
+export class QueryParamsTableComponent implements OnChanges {
 
   @Input() query = '';
   private searchparams: URLSearchParams = {} as any;
 
   @Output() jhochange  = new EventEmitter<string>();
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
 
     this.searchparams = new URLSearchParams(this.query);
 

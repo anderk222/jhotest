@@ -1,10 +1,11 @@
-<div class="w-full">
-    <jhotest-navbar />
-
-    <div class="flex w-full pt-6">
+<div class="w-full layout">
+    <div class="header">
+        <jhotest-navbar />
+    </div>
+    <div class="sidebar">
         <jhotest-sidebar />
-        <div class="w-full" >
-            <router-outlet />
-        </div>
+    </div>
+    <div class="content">
+        <router-outlet />
     </div>
 </div>

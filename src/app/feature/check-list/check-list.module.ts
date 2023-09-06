@@ -28,6 +28,7 @@ const routes: Route[] = [
     FormsModule,
     ReactiveFormsModule,
     TestCasesCheckItemComponent,
+    InputSharedModule,
     InputSharedModule
   ],
   exports: [],
