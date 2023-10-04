@@ -66,5 +66,11 @@ export class ProjectService {
 
     return this.http.delete<Project>(`${this.url}/${id}`);
 
+  };
+
+  public addUser(id : number){
+
+    return this.http.get(`${this.url}/adduser/${id}`)
+
   }
 }

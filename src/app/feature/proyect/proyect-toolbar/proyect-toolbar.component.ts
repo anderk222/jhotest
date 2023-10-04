@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { DropdownOpt } from '@jhotest/shared/dropdown/models/option';
 
 @Component({
   selector: 'jhotest-proyect-toolbar',
@@ -10,6 +9,6 @@ export class ProyectToolbarComponent {
 
   @Output() newmodal = new EventEmitter<null>();
   @Input() path = '';
-  @Input() contentbtn= 'Nuevo';
+  @Input()  contentbtn= 'Nuevo';
 
 }

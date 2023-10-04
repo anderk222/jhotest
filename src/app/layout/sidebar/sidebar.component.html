@@ -1,40 +1,67 @@
-<ul class="list-none w-full h-full flex flex-col p-2  gap-2 border-r border-r-[#776F6F]">
+<div class="flex flex-col justify-between h-full">
+    <ul class="list-none w-full h-full flex flex-col p-2  gap-2">
 
-    <li class="side_item w-full">
-        <div class="one"></div>
+        <li class="side-item w-full">
+            <span class=" one bg-[#FF8D3A] text-white rounded-[50%] h-fit w-[33px] leading-[33px] shrink-0 text-center">
+                <p>AM</p>
+            </span>
+            <div class="two">
+                <p class="text-sm font-semibold">Anderson Macias</p>
+                <p class="text-xs">anderk222@gmail.com</p>
+            </div>
 
-        <p class="two text-sm">Anderson Macias</p>
+            <div class="three"></div>
 
-        <span class=" three bg-[#FF8D3A] text-white rounded-[50%] h-fit w-[33px] leading-[33px] shrink-0 text-center">
-            <p>AM</p>
-        </span>
-    </li>
-    <div class="border-b-[1.6px] border-b-black"></div>
+        </li>
+        <div class="border-b-[2px] border-b-neutral-400 "></div>
 
-    <li class="w-full flex flex-col gap-2">
-        <div class="side_item text-sm">
-            <img src="assets/gem.svg" alt="">
+        <li class="w-full flex flex-col gap-2">
+            <div class="side-item text-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="text-neutral-500 bi bi-kanban-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M2.5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2h-11zm5 2h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zm-5 1a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1V3zm9-1h1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z" />
+                </svg>
+                <a class="two font-semibold" routerLink="/proyect">Workspaces</a>
+                <span (click)="handleNew()" class="text-xl text-neutral-500 cursor-pointer">+</span>
+            </div>
 
-            <a class="two" routerLink="/proyect">Workspaces</a>
+            <ul *ngIf="status=='OK'" class="list-none flex gap-1 flex-col text-sm">
 
-            <span 
-            (click)="handleNew()"
-            class="text-xl cursor-pointer">+</span>
-        </div>
+                <li class="animate-item rounded-md" *ngFor="let project of projects">
+                    <button [routerLink]="'proyect/'+project.id" routerLinkActive="shadow-element font-semibold bg-[#F2FDFE]"
+                        class="flex pl-9 items-center py-2 w-full gap-2">
+                        <span class="bg-[#FB00C4] text-base text-white px-1">{{project.name.substring(0,2)}}</span>
+                        <P>{{project.name}}</P>
+                    </button>
+                </li>
+            </ul>
+        </li>
 
-        <ul *ngIf="status=='OK'" class="list-none flex gap-3 flex-col text-sm">
+    </ul>
 
-            <li *ngFor="let project of projects">
-                <button 
-                [routerLink]="'proyect/'+project.id"
-                routerLinkActive="shadow-element bg-[#F2FDFE]"
-                class="flex pl-9 items-center py-2 w-full gap-2"> 
-                <span
-                        class="bg-[#FB00C4] text-base text-white px-1">{{project.name.substring(0,2)}}</span>
-                    <P>{{project.name}}</P>
-                </button>
-            </li>
-        </ul>
-    </li>
+    <ul class="list-none w-full flex flex-col p-2  ">
 
-</ul>
+        <li routerLink="/profile" class="w-full animate-item flex gap-2 p-2 items-center cursor-pointer">
+            <a  class="">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-neutral-500 bi bi-person-fill" viewBox="0 0 16 16">
+                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+                  </svg>
+            </a>
+            <span class="two text-sm font-semibold">Mi Informacion</span>
+        </li>
+
+        <li class="w-full animate-item flex gap-2 p-2 items-center cursor-pointer">
+            <span class="">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="text-neutral-500 bi bi-door-open-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2h.5a.5.5 0 0 1 .5.5V15h-1V2zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z" />
+                </svg>
+            </span>
+            <span class="two text-sm font-semibold">Log out</span>
+        </li>
+
+    </ul>
+
+</div>

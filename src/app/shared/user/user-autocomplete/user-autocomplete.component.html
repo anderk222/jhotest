@@ -1,0 +1,22 @@
+<div #userAutocomplete class="relative w-full">
+    <input 
+    (focus)="open=true"
+    #ipt (input)="handlerChangeInput(ipt.value)" class="w-full p-2 border border-blue-50 rounded-sm"
+        placeholder="search user" />
+    <ul *ngIf="open" class="absolute bg-white shadow-element w-full p-2">
+        <li *ngIf="status=='ERROR'" class="text-red-500">
+            A ocurrido un error
+        </li>
+        <li *ngIf="status=='LOAD'" class="">
+            Cargando...
+        </li>
+        <li *ngIf="status=='NOTHING'" class="">
+            Ningun usuario encontrado
+        </li>
+        <li *ngFor="let user of users" (click)="handlerSelect(user)" class="border-b p-2 cursor-pointer">
+
+            <p>{{user.correo}}</p>
+
+        </li>
+    </ul>
+</div>

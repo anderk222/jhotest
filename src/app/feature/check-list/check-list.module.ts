@@ -10,12 +10,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TestCasesCheckItemComponent } from '@jhotest/shared/test-case/test-cases-check-item/test-cases-check-item.component';
 import { InputSharedModule } from '@jhotest/shared/input/input-shared.module';
 import { CheckListIndexComponent } from './check-list-index/check-list-index.component';
+import { canDesactiveGuard } from './guards/can-desactive.guard';
 
 const routes: Route[] = [
 
   {
     path: ':checklist',
-    component: CheckListComponent
+    component: CheckListComponent,
+    canDeactivate : [canDesactiveGuard]
   }
 
 ];

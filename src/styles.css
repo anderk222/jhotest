@@ -8,12 +8,7 @@ body{
     font-family: 'Krub', sans-serif;
 }
 
-.side_item {
-    display: inline-grid;
-    align-items: center;
-    grid-template-columns: 20% auto 20%;
-    width: 100%;
-}
+
 
 .shadow-element {
 

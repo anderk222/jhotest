@@ -32,6 +32,7 @@ export class SidebarComponent implements OnInit {
     this.projectService.findSomeSort(user, { limit: 10, page: 0 }).subscribe({
 
       next: (res) => {
+        
         this.projects = res;
         this.status = 'OK'
 

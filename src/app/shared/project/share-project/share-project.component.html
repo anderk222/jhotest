@@ -1,0 +1,43 @@
+<div class="relative w-full text-xs flex justify" >
+    <svg #active (click)="handlerOpen($event)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+        class="bi bi-share-fill cursor-pointer" viewBox="0 0 16 16">
+        <path
+            d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5z" />
+    </svg>
+    <div #share *ngIf="open" class="absolute right-[100%] z-[1] top-4 text-black bg-white rounded-sm shadow-element w-72 h-80">
+      
+        <h4 class=" px-2 py-2 text-black ">Share project</h4>
+        <div class="border-b"></div>
+        <ul class="p-2 flex flex-col ">
+            <li class="mb-4">
+                <div class="flex gap-2 w-full shadow-element">
+                    <jhotest-user-autocomplete class="w-full" />
+                    <button 
+                    (click)="handlerInviteUser()"
+                    class="bg-neutral-100 hover:bg-neutral-200 font-medium rounded-sm shadow-element p-1 px-2">
+                        Invite
+                    </button>
+                </div>
+            </li>
+            <li *ngFor="let user of users.values()" class="flex border-t items-center gap-2 py-2">
+
+                <span
+                    class=" one text-[11px] bg-[#FF8D3A] text-white rounded-[50%] h-fit w-[24px] leading-[24px] shrink-0 text-center">
+                    <p>AM</p>
+                </span>
+                <p>
+                    {{user.correo}}
+                </p>
+                <button class="ml-auto text-neutral-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
+                        class="bi bi-trash-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+                    </svg>
+                </button>
+            </li>
+
+        </ul>
+
+    </div>
+</div>

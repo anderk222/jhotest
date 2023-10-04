@@ -15,7 +15,6 @@ const routes: Route[] = [
       .then(m => m.CheckListModule)
   }
 
-
 ];
 
 

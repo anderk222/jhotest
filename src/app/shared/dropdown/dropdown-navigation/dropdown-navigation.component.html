@@ -1,5 +1,5 @@
-<div class="w-fit relative">
-    <button (click)="status=!status" class="focus:outline-none flex items-center gap-2">
+<div [class]="['w-fit relative', jhoClass]">
+    <button (click)="status=!status" class="font-semibold focus:outline-none flex items-center gap-2">
       {{text}} <span><svg xmlns="http://www.w3.org/2000/svg" width="11" height="16" fill="currentColor"
                 class="bi bi-chevron-down" viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
@@ -9,7 +9,7 @@
     <ul
     [ngStyle]="{width : width}"
     *ngIf="status" 
-    class="text-zinc-600 z-50 flex flex-col gap-1 top-[27px] absolute bg-white max-w-[400px] w-fit  shadow-element">
+    class="text-zinc-600 z-50 flex flex-col top-[27px] absolute bg-white max-w-[400px] w-fit  shadow-element">
         <li *ngFor="let item of options"
         [routerLink]="item.path"    
         (click)="status=!status"
@@ -22,5 +22,4 @@
     class="text-zinc-600 p-2 pr-8 top-[22px] absolute bg-white max-w-[400px] shadow-element" >
       <span class="text-xs" >No items here</span>
     </div>
-
 </div>

@@ -1,0 +1,35 @@
+<form class="flex" [formGroup]="form" (submit)="saveOrUpdate()">
+
+    <figure class="w-80">
+        <img src="https://estaticos.elcolombiano.com/binrepository/781x1001/0c1/780d565/none/11101/WYEO/homero-simpson_42360908_20230512163831.jpg"
+            alt="">
+    </figure>
+    <div class="w-full h-full">
+        <div class="flex flex-col text-blue-500 w-full">
+            <label>Nombre complete</label>
+            <input [formControl]="fullName" class="border p-2 border-blue-500 rounded-md focus:text-blue-500 focus:outline-blue-500 h-fit"
+                placeholder="type here" type="text">
+        </div>
+
+        <div class="flex flex-col text-blue-500 w-full">
+            <label>Numero de telefono</label>
+            <input [formControl]="phone" class="border p-2 border-blue-500 rounded-md focus:text-blue-500 focus:outline-blue-500 h-fit"
+                placeholder="type here" type="text">
+        </div>
+
+        <div class="flex gap-2 pt-4 ">
+            <button 
+            [disabled]="form.invalid"
+            type="submit"
+            class="bg-blue-600 rounded-sm shadow-element w-[80px] font-semibold h-[29px] text-white">
+                Guardar
+            </button>
+            <button
+            type="reset"
+            (click)="resetForm()"
+            class="bg-[#FF5656] rounded-sm shadow-element w-[80px] font-semibold h-[29px] text-white">
+                Cancelar
+            </button>
+        </div>
+    </div>
+</form>

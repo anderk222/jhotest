@@ -14,8 +14,7 @@ import { TestCase, TestCaseGroup } from '@jhotest/feature/test-case/models';
   styleUrls: ['./check-list.component.css']
 })
 
-export class CheckListComponent implements OnInit {
-
+export class CheckListComponent implements OnInit, AfterViewInit {
 
   constructor(
     private fb: FormBuilder,
@@ -48,6 +47,14 @@ export class CheckListComponent implements OnInit {
 
   }
 
+  ngAfterViewInit(): void {
+    this.checklist.valueChanges.subscribe((values) =>{ 
+
+      this.localStorageSaved = 'false';
+    
+    })
+  }
+
   @HostListener('document:keydown', ['$event'])
   handleSaveShortCut(e: KeyboardEvent) {
     if (e.ctrlKey && e.key == 's') {
@@ -68,10 +75,12 @@ export class CheckListComponent implements OnInit {
 
     this.checklistService.update(data).subscribe({
 
-      next: () => this.snackbar.open('Cambios salvados'),
+      next: () => {
+        this.snackbar.open('Cambios salvados')
+        this.localStorageSaved = 'true';
+      },
       error: (err) => this.snackbar.open(JSON.stringify(err))
     })
-
   }
 
   private findById(id: number | string) {
@@ -85,6 +94,7 @@ export class CheckListComponent implements OnInit {
 
         this.addItems(res.items);
         this.status = 'OK';
+        this.localStorageSaved = 'true';
       },
       error: (err) => {
 
@@ -92,7 +102,6 @@ export class CheckListComponent implements OnInit {
         this.status = 'ERROR'
       }
     });
-
   }
 
   private addItem(item: ChecklistItem) {
@@ -139,11 +148,15 @@ export class CheckListComponent implements OnInit {
 
   private generateIndex = (items: ChecklistItem[]) => items.map((v, i) => `${i + 1}.- ${v.question}`)
 
-
   private addItems(items: ChecklistItem[]) { for (let item of items) this.addItem(item) }
 
   get items() { return this.checklist.get('items') as FormArray<ItemGroup> };
   get name(): any { return this.checklist.get('name') };
 
   set name(value: any) { this.checklist.patchValue({ name: value }) };
+
+  set localStorageSaved(value: 'true' | 'false') {
+    window.localStorage.setItem('saved-check', value)
+  }
+
 }

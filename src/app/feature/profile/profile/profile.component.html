@@ -1,0 +1,25 @@
+<section class="flex flex-col px-2 gap-2">
+    <h1 class="font-semibold">Mi informacion</h1>
+
+    <jhotest-profile-form [detail]="user.detail" />
+
+    <section class="flex flex-col gap-1 pt-4">
+        <div>
+            <h3 class="font-medium">Nombre de Usuario</h3>
+            <p class="text-sm text-neutral-700">{{user.alias}}</p>
+        </div>
+        <div>
+            <h3 class="font-medium">Correo electronico</h3>
+            <p class="text-sm text-neutral-700">{{user.correo}}</p>
+        </div>
+        <div>
+            <h3 class="font-medium">Contrasenia</h3>
+            <button class="bg-neutral-300  rounded-sm shadow-element px-4 font-semibold h-[29px] ">
+                Cambiar contrasenia
+            </button>
+            <p class="text-sm pt-1 text-neutral-600">Recuerda usar una contrasenia que recuerdes y a la vez sea dificil
+                de decifrar, evita usar fechas en tus
+                contrasena y compartirla con otras personas</p>
+        </div>
+    </section>
+</section>

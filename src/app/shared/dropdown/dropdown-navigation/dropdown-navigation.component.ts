@@ -18,5 +18,8 @@ export class DropdownNavigationComponent {
 
   @Input() width = '150px';
 
+  @Input() jhoClass = '';
+
+
   status = false;
 }

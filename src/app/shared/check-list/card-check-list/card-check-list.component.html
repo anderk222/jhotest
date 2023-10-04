@@ -1,7 +1,7 @@
 
 <figure class="flex gap-2 flex-col w-44">
     <div
-        class=" h-28 flex items-center justify-center shadow-element text-6xl text-white text-center bg-[#FB00C4]">
+        class=" h-28 flex items-center justify-center text-6xl text-white text-center bg-[#FB00C4]">
         BE
     </div>
     <div class="flex justify-between">
@@ -18,7 +18,7 @@
     </div>
     <div class="flex gap-2 h-7 text-sm">
         <button [routerLink]="'checklist/'+checklist.id"
-            class="bg-[#F1F1F1] w-14 shadow-md">abrir</button>
+            class="bg-[#F1F1F1 font-semibold] w-14 shadow-md">abrir</button>
         <button (click)="delete.emit(checklist.id)"
             class="bg-[#FF5656] w-16  text-white shadow-md">
             eliminar
