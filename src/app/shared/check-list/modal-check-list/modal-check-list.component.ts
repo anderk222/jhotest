@@ -53,7 +53,7 @@ export class ModalCheckListComponent implements OnInit, OnChanges {
 
   ngOnInit() {
 
-    this.route.paramMap.subscribe((params) => {
+    this.route.queryParamMap.subscribe((params) => {
 
       this.findProject(Number(params.get('project')));
 

@@ -4,21 +4,25 @@ import { RootComponent } from './root/root.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { DropdownProjectNavigationComponent } from '@jhotest/shared/project/dropdown-project-navigation/dropdown-project-navigation.component';
 import { ShareProjectComponent } from '@jhotest/shared/project/share-project/share-project.component';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { PrivateRoutingModule } from './private.routing';
 
 
 @NgModule({
     imports: [
         DropdownProjectNavigationComponent,
         ShareProjectComponent,
-        RouterModule,
-        CommonModule
+        CommonModule,
+        PrivateRoutingModule,
+        RouterModule
     ],
     exports: [
         NavbarComponent,
         RootComponent,
-        SidebarComponent],
+        SidebarComponent,
+        PrivateRoutingModule
+    ],
     declarations: [NavbarComponent,
         RootComponent,
         SidebarComponent],

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '../../feature/proyect/services/project.service';
-import { AuthService } from '@jhotest/auth/auth.service';
+import { AuthService } from '@jhotest/auth/service/auth.service';
 import { LoadStatus } from '@jhotest/model/LoadSatus';
 
 @Component({

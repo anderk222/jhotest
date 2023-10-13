@@ -1,17 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'proyect', pathMatch: 'full' },
+
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+
   {
-    path: 'proyect',
-    loadChildren: () => import('@jhotest/feature/proyect/proyect.module')
-      .then(m => m.ProyectModule)
+    path: 'priv',
+    loadChildren: () => import('@jhotest/layout/layout.module')
+      .then(m => m.LayoutModule)
+  },
+
+  {
+    path: 'login',
+    component: LoginComponent
   },
   {
-    path: 'profile',
-    loadChildren: () => import('@jhotest/feature/profile/profile.module')
-      .then((m => m.ProfileModule))
+    path: 'register',
+    component: RegisterComponent
   }
 ];
 

@@ -6,12 +6,12 @@
     </svg>
     <div #share *ngIf="open" class="absolute right-[100%] z-[1] top-4 text-black bg-white rounded-sm shadow-element w-72 h-80">
       
-        <h4 class=" px-2 py-2 text-black ">Share project</h4>
+        <h4 class=" px-2 py-2 text-black ">{{ !project ? 'Ningun proyecto seleccionado'  : 'Share project'}}</h4>
         <div class="border-b"></div>
         <ul class="p-2 flex flex-col ">
             <li class="mb-4">
                 <div class="flex gap-2 w-full shadow-element">
-                    <jhotest-user-autocomplete class="w-full" />
+                    <jhotest-user-autocomplete class="w-full" (select)="handleSelectUser($event)" />
                     <button 
                     (click)="handlerInviteUser()"
                     class="bg-neutral-100 hover:bg-neutral-200 font-medium rounded-sm shadow-element p-1 px-2">
@@ -19,15 +19,19 @@
                     </button>
                 </div>
             </li>
-            <li *ngFor="let user of users.values()" class="flex border-t items-center gap-2 py-2">
+            <li *ngFor="let user of users" class="flex border-t items-center gap-2 py-2">
 
                 <span
                     class=" one text-[11px] bg-[#FF8D3A] text-white rounded-[50%] h-fit w-[24px] leading-[24px] shrink-0 text-center">
                     <p>AM</p>
                 </span>
-                <p>
-                    {{user.correo}}
-                </p>
+                <div>
+                    <p>{{user.alias}}</p>
+                    <p class="text-[10px]" >
+                        {{user.correo}}
+                    </p>
+                </div>
+                
                 <button class="ml-auto text-neutral-500">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
                         class="bi bi-trash-fill" viewBox="0 0 16 16">

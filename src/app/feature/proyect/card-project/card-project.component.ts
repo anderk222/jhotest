@@ -18,6 +18,8 @@ export class CardProjectComponent {
     img: ''
   }
 
+  @Input() sharedProject = false;
+
   @Output() remove = new EventEmitter<number>();
 
 

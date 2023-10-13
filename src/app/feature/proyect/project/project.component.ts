@@ -27,7 +27,7 @@ export class ProjectComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.route.paramMap.subscribe((params) => {
+    this.route.queryParamMap.subscribe((params) => {
 
       this.findProject(Number(params.get('project')))
 

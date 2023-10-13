@@ -18,7 +18,7 @@ export class ProjectService {
     'Content-Type': 'application/json'
   });
 
-  public findSome(user: number, opt : Pageable) {
+  public findSome(user: number, opt: Pageable) {
 
     let url = `${this.url}/${user}/user?page=${opt.page}&limit=${opt.limit}`;
 
@@ -26,7 +26,7 @@ export class ProjectService {
 
   }
 
-  public findSomeSort(user: number, opt : Pageable) {
+  public findSomeSort(user: number, opt: Pageable) {
 
     let url = `${this.url}/${user}/user/sort?page=${opt.page}&limit=${opt.limit}`
 
@@ -34,7 +34,7 @@ export class ProjectService {
 
   }
 
-  public search(user: number, opt : optsearch) {
+  public search(user: number, opt: optsearch) {
 
     let url = `${this.url}/search/${user}/user`;
     url += `?value=${opt.value}&page=${opt.page}&limit=${opt.limit}`;
@@ -62,15 +62,26 @@ export class ProjectService {
 
   }
 
-  public delete(id : number){
+  public delete(id: number) {
 
     return this.http.delete<Project>(`${this.url}/${id}`);
 
   };
 
-  public addUser(id : number){
+  public getSharedProjects(userId : number, opt: optsearch ){
 
-    return this.http.get(`${this.url}/adduser/${id}`)
+    let url = `${this.url}/findBySharedUser/${userId}`;
+    url += `?value=${opt.value}&page=${opt.page}&limit=${opt.limit}`;
+
+    return this.http.get<Pagination<Project>>(url);
+
+
+  }
+
+  public addUser(id: number, userId: number) {
+
+    return this.http.post(`${this.url}/adduser/${id}/${userId}/user`, null,
+      { headers: this.header });
 
   }
 }

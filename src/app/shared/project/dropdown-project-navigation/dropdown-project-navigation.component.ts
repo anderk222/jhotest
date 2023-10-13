@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '@jhotest/feature/proyect/services/project.service';
-import { AuthService } from '@jhotest/auth/auth.service';
+import { AuthService } from '@jhotest/auth/service/auth.service';
 import { Pageable } from '@jhotest/model/pagination';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DropdownNavOpt } from '@jhotest/shared/dropdown/models/option';
@@ -41,7 +41,8 @@ export class DropdownProjectNavigationComponent implements OnInit {
       next: (res) => this.options = res.map(function (v): DropdownNavOpt {
         return {
           text: v.name,
-          path: `/proyect/${v.id}`
+          path: `proyect/pr`,
+          params: { project : v.id }
         };
       }),
       error: (err) => this.snackbar.open(JSON.stringify(err))

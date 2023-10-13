@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '../services/project.service';
-import { AuthService } from '@jhotest/auth/auth.service';
+import { AuthService } from '@jhotest/auth/service/auth.service';
 import { optsearch } from '@jhotest/model/pagination';
 import { ProjectStoreService } from '../services/project-store.service';
 import { MatSnackBar } from '@angular/material/snack-bar'

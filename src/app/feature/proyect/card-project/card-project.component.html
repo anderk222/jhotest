@@ -9,10 +9,13 @@
     <div class="flex gap-2 h-7 text-sm">
 
         <button 
-        [routerLink]="project.id.toString()"
+        routerLink="pr"
+        [queryParams]="{project : project.id}"
         class="bg-[#F1F1F1] w-14 shadow-element">abrir
         </button>
-        <button (click)="remove.emit(project.id)" class="bg-[#FF5656] w-16 font-semibold  text-white shadow-element">
+        <button 
+        *ngIf="!sharedProject"
+        (click)="remove.emit(project.id)" class="bg-[#FF5656] w-16 font-semibold  text-white shadow-element">
             eliminar
         </button>
     </div>

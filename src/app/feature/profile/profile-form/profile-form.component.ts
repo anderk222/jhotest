@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { UserDetail } from '../model/userdetail';
 import { FormBuilder, Validators } from '@angular/forms';
-import { AuthService } from '@jhotest/auth/auth.service';
+import { AuthService } from '@jhotest/auth/service/auth.service';
 import { UserDetailService } from '../service/userdetail.servide';
 import { Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';

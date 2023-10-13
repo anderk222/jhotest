@@ -28,7 +28,7 @@ export class UserService {
 
     public findBySharedProject(projectId : number){
 
-        return this.http.get<Set<User>>(`${this.url}/findBySharedProject/${projectId}`);
+        return this.http.get<User[]>(`${this.url}/findBySharedProject/${projectId}`);
 
     }
 }

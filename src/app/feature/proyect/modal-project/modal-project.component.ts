@@ -6,7 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Project } from '../model/project';
-import { AuthService } from '@jhotest/auth/auth.service';
+import { AuthService } from '@jhotest/auth/service/auth.service';
 import { ProjectStoreService } from '../services/project-store.service';
 
 @Component({

@@ -12,6 +12,7 @@
     class="text-zinc-600 z-50 flex flex-col top-[27px] absolute bg-white max-w-[400px] w-fit  shadow-element">
         <li *ngFor="let item of options"
         [routerLink]="item.path"    
+        [queryParams]="item.params"
         (click)="status=!status"
         class="gap-2 flex cursor-pointer p-2 pr-8 hover:bg-[#F1F1F1]" >
             <span>{{item.text}}</span>

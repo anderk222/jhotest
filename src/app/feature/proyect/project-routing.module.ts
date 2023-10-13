@@ -7,12 +7,13 @@ const routes: Route[] = [
 
   { path: '', component: ProyectsComponent },
   {
-    path: ':project', component: ProjectComponent,
+    path: 'pr', component: ProjectComponent,
   },
   {
-    path: ':project/checklist',
+    path: 'pr/checklist',
     loadChildren: () => import('@jhotest/feature/check-list/check-list.module')
-      .then(m => m.CheckListModule)
+      .then(m => m.CheckListModule),
+
   }
 
 ];

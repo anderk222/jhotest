@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '@jhotest/auth/auth.service';
-import { UserDetailService } from '../service/userdetail.servide';
+import { AuthService } from '@jhotest/auth/service/auth.service';
 import { UserService } from '@jhotest/feature/user/service/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from '@jhotest/feature/user/model/user';

@@ -29,7 +29,9 @@
             <ul *ngIf="status=='OK'" class="list-none flex gap-1 flex-col text-sm">
 
                 <li class="animate-item rounded-md" *ngFor="let project of projects">
-                    <button [routerLink]="'proyect/'+project.id" routerLinkActive="shadow-element font-semibold bg-[#F2FDFE]"
+                    <button routerLink="/priv/proyect/pr"
+                    [queryParams]="{ project : project.id }"
+                    routerLinkActive="shadow-element font-semibold bg-[#F2FDFE]"
                         class="flex pl-9 items-center py-2 w-full gap-2">
                         <span class="bg-[#FB00C4] text-base text-white px-1">{{project.name.substring(0,2)}}</span>
                         <P>{{project.name}}</P>
@@ -42,7 +44,7 @@
 
     <ul class="list-none w-full flex flex-col p-2  ">
 
-        <li routerLink="/profile" class="w-full animate-item flex gap-2 p-2 items-center cursor-pointer">
+        <li routerLink="/priv/profile" class="w-full animate-item flex gap-2 p-2 items-center cursor-pointer">
             <a  class="">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-neutral-500 bi bi-person-fill" viewBox="0 0 16 16">
                     <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>

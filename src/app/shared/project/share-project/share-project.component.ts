@@ -1,6 +1,6 @@
 import { CommonModule, NgFor } from '@angular/common';
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectService } from '@jhotest/feature/proyect/services/project.service';
 import { User } from '@jhotest/feature/user/model/user';
 import { UserService } from '@jhotest/feature/user/service/user.service';
@@ -18,32 +18,30 @@ export class ShareProjectComponent implements OnInit {
   constructor(
     private service: ProjectService,
     private userService: UserService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) { }
 
   @ViewChild("share") ref!: ElementRef;
 
   open = false;
 
-  public users: Set<User> = new Set();
+  project = 0;
+
+  public users: User[] = [];
 
   private selectedUser!: User;
 
   ngOnInit(): void {
 
-    this.route.params.subscribe((params) => {
+    this.route.queryParamMap.subscribe((params) => {
 
-      let projectId = params['id'];
-
-
-      console.log(params);
-      
-      console.log(projectId);
-      
+      let projectId = params.get('project');
 
       if (!projectId) return;
 
-      this.findSharedUsers(parseInt(projectId));
+      this.project = parseInt(projectId)
+
+      this.findSharedUsers(this.project);
 
     })
 
@@ -56,13 +54,10 @@ export class ShareProjectComponent implements OnInit {
 
     if (!this.ref) return
 
-    console.log('paso');
-
 
     if (!this.ref.nativeElement.contains(target)) {
       this.open = false;
     }
-
   }
 
   handlerOpen(event: Event) {
@@ -73,13 +68,18 @@ export class ShareProjectComponent implements OnInit {
 
   }
 
+  handleSelectUser(user: User) {
+
+    this.selectedUser = user;
+
+  }
+
   handlerInviteUser() {
 
     if (!this.selectedUser) return;
 
-    this.users.add(this.selectedUser);
-
-    this.service.addUser(this.selectedUser.id);
+    this.service.addUser(this.project, this.selectedUser.id)
+      .subscribe(() => this.users.push(this.selectedUser));
 
   }
 

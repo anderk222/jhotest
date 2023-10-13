@@ -18,6 +18,7 @@
     </div>
     <div class="flex gap-2 h-7 text-sm">
         <button [routerLink]="'checklist/'+checklist.id"
+        queryParamsHandling="merge"
             class="bg-[#F1F1F1 font-semibold] w-14 shadow-md">abrir</button>
         <button (click)="delete.emit(checklist.id)"
             class="bg-[#FF5656] w-16  text-white shadow-md">

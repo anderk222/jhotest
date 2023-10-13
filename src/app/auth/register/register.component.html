@@ -1,0 +1,47 @@
+<div class="flex flex-col w-full h-screen items-center justify-center">
+
+    <form class="w-[40rem] flex flex-col relative">
+        <div class="flex justify-center gap-3 p-2 items-center">
+            <div class="border-b border-blue-500 w-full" ></div>
+            <h1 class="text-end  font-medium">Registro  </h1>
+        </div>
+        <div class="bg-[#1B1B1B] p-3 absolute w-full top-[-70px] mb-2 rounded-md flex justify-center items-center">
+           <h2 class="text-white ">Bienvenido!, estamos muy felices por optar por nosotros :)</h2>
+        </div>
+        <div class="flex flex-col text-blue-500 w-full">
+            <label>Nombre Usuario</label>
+            <input class="border p-2 border-blue-500 rounded-md focus:text-blue-500 focus:outline-blue-500 h-fit"
+                placeholder="type here" type="text">
+        </div>
+
+        <div class="flex flex-col text-blue-500 w-full">
+            <label>Correo de Usuario</label>
+            <input class="border p-2 border-blue-500 rounded-md focus:text-blue-500 focus:outline-blue-500 h-fit"
+                placeholder="type here" type="text">
+        </div>
+
+
+        <div class="flex flex-col text-blue-500 w-full">
+            <label>Contrasena</label>
+            <input class="border p-2 border-blue-500 rounded-md focus:text-blue-500 focus:outline-blue-500 h-fit"
+                placeholder="type here" type="password">
+        </div>
+        <div class="flex flex-col text-blue-500 w-full">
+            <label>Confirmar contrasena</label>
+            <input class="border p-2 border-blue-500 rounded-md focus:text-blue-500 focus:outline-blue-500 h-fit"
+                placeholder="type here" type="password">
+        </div>
+
+        <div class="flex flex-col text-sm pt-2">
+            <a 
+            routerLink="/login"
+            class="text-neutral-600 w-fit hover:text-neutral-500 cursor-pointer underline">Ya tengo una cuenta</a>
+
+        </div>
+
+        <div class="w-full mt-2 flex justify-end">
+            <button class="bg-blue-600 shadow-element w-full transition-all font-semibold p-2 hover:bg-blue-500 rounded-sm text-white">Registrarse</button>
+        </div>
+    </form>
+
+</div>

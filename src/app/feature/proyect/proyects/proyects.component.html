@@ -10,6 +10,7 @@
             />
         </div>
         <app-loading-table *ngIf="status !== 'OK'" [status]="status" ></app-loading-table>
+        <jhotest-shared-projects />
     </div>
 </section>
 <jhotest-modal-project *ngIf="modal.open" (action)="modal.toggle()" />

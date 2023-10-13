@@ -8,6 +8,17 @@ export type Pagination<T> = {
 
 }
 
+export const initializePagination = <T>(): Pagination<T>=>{
+    return {
+        data : [],
+        limit : 10,
+        page : 1,
+        totalItems : 0,
+        totalPages : 0
+    }
+
+}
+
 export type Pageable = {
 
     page : number | string;

@@ -1,0 +1,11 @@
+<section id="proyectos" class="w-full pt-2 px-3">
+    <h2 class="font-semibold pb-2" >Proyectos compartidos</h2>
+        <div *ngIf="status=='OK'" class="pl-4 flex w-full gap-8 flex-wrap">
+            <jhotest-card-project 
+            *ngFor="let project of pagination.data" 
+            [project]="project " 
+            />
+        </div>
+        <app-loading-table *ngIf="status !== 'OK'" [status]="status" ></app-loading-table>
+</section>
+<jhotest-modal-project *ngIf="modal.open" (action)="modal.toggle()" />

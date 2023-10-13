@@ -16,6 +16,7 @@ import { DropdownSharedModule } from '@jhotest/shared/dropdown/dropdown-shared.m
 import { CheckListToolbarComponent } from '@jhotest/shared/check-list/check-list-toolbar/check-list-toolbar.component';
 import { ProjectRoutingModule } from './project-routing.module';
 import { LoadingTableComponent } from '@jhotest/shared/load/loading-table/loading-table.component';
+import { SharedProjectsComponent } from './shared-projects/shared-projects.component';
 
 
 
@@ -39,6 +40,7 @@ import { LoadingTableComponent } from '@jhotest/shared/load/loading-table/loadin
     CardProjectComponent,
     ModalProjectComponent,
     ProjectComponent,
+    SharedProjectsComponent,
   ],
   providers: [ProjectStoreService, ModalService],
 })
